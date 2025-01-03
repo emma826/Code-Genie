@@ -140,13 +140,25 @@ const data = {
   projects: [
     {
       name: "Javascript Debug Session",
-      url: "#",
+      url: "/main/emma",
       icon: Frame,
     },
   ],
 }
 
+let project;
+
+await fetch("/api/question", {
+  method: "GET"
+}).then(res => res.json()).then(data => {
+  project = data.questions.map(proj => ({
+    ...proj,
+    icon: Frame,
+  }));
+}).catch(err => console.log(err))
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -170,7 +182,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <HistoryTab />
         {/* <NavMain items={data.navMain} /> */}
-        <NavProjects projects={data.projects} />
+        <NavProjects projects={project} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

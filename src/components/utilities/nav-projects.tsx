@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import {
   Folder,
   MoreHorizontal,
@@ -41,13 +43,15 @@ export function NavProjects({
       <SidebarGroupLabel>History</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
-          <SidebarMenuItem key={item.name}>
+          <SidebarMenuItem key={item.url}>
+
             <SidebarMenuButton asChild>
-              <a href={item.url}>
+              <Link href={item.url}>
                 <item.icon />
                 <span>{item.name}</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
@@ -75,6 +79,7 @@ export function NavProjects({
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+
           </SidebarMenuItem>
         ))}
         <SidebarMenuItem>
