@@ -11,7 +11,6 @@ export async function POST(req: NextRequest) {
         return new Response(JSON.stringify({ error: "Question is required" }), { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
-    // Save the question to the database
     try {
         const insert_question = await question_model.create({ question });
 
